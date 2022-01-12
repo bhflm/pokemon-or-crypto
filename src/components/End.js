@@ -1,8 +1,10 @@
 import './index.css';
 
-const End = () => {
+const End = ({score, total}) => {
     return (
-        <p>The end</p>
+        <div>
+          <p>You got {score} from a total of {total}!</p>
+        </div>
     )
 }
 

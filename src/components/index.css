@@ -104,6 +104,22 @@
   width: 50%;
 }
 
+.modal-correct {
+  font-size: xx-large;
+  font-weight: bold;
+  color: seagreen;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-false {
+  font-size: xx-large;
+  font-weight: bold;
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+
 .modal-text {
   padding: 5px;
 }

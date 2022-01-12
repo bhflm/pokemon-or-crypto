@@ -16,7 +16,8 @@ class Game extends Component {
       questionBank,
       current: questionBank[0],
       score: 0,
-      responses: 0
+      responses: 0,
+      answer: 0,
     };
   }
 
@@ -28,38 +29,31 @@ class Game extends Component {
   };
 
   clickHandler = (answer) => {
-    const { current, questionBank } = this.state;
-    if (answer === current.type) {
-      console.log('Correct');
-      this.setState((prev) => {
-        const score = prev.score + 1;
-        return { ...this.state, score, answer: true };
-      });
-    } else {
-      console.log('Wrong');
-      this.setState((prev) => {
-        const score = prev.score + 1;
-        return { ...this.state, score, answer: false };
-      });
-    }
+    const { questionBank } = this.state;
     this.setState((prev) => {
-      const current = questionBank[prev.responses + 1];   
+      const index = prev.responses + 1;
+      const current = questionBank[index]; 
+      let score;
+      if (answer === 0) {
+        score = 0;
+      } else {
+        const isCorrect = answer === questionBank[prev.responses].type;
+        score = isCorrect ? prev.score + 1: prev.score;
+      }
       const responses = prev.responses + 1;
-      const show = true;
-      return { ...this.state, current, responses, show};
+      return { ...this.state, score, current, responses, show: true, answer};
     });
   }
 
   render() {
-    const { questionBank, responses } = this.state;
-    console.log('Responses: ', responses);
-
-    const currentQ = questionBank[responses-1];
-    console.log('CurrentQ: ', currentQ);
-    const end = questionBank.length === responses;
-
-    const screen = end ? <End /> : (<> 
-      <Modal show={this.state.show} handleClose={this.switchModal} current={questionBank[responses]} answer={this.state.answer} />
+    const { questionBank, responses, score, show } = this.state;
+    const currentScreen = questionBank.length === responses ?       
+    (<>
+      <Modal show={show} handleClose={this.switchModal} current={questionBank[questionBank.length-1]} answer={this.state.answer} />
+      <End score={score} total={questionBank.length} />
+    </>) : 
+    (<> 
+      <Modal show={show} handleClose={this.switchModal} current={questionBank[responses-1] ? questionBank[responses-1] : questionBank[0]} answer={this.state.answer} />
       <Question text={this.state.current.name} />
       <Answers clickHandler={this.clickHandler} />
     </>);
@@ -71,7 +65,7 @@ class Game extends Component {
             <h1 className="title-text">Crypto or Pokemon?</h1>
           </div>
           <div className="home">
-          {screen}          
+          {currentScreen}          
           </div>
           <div className="bottom-bar">
           <p className="bottom-bar-text">
