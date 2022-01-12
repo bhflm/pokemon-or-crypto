@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import Answers from './Answers';
 import Question from './Question';
 import Modal from './Modal';
+import End from './End';
 import { data } from '../data';
 
 const questionBank = data.sort(() => Math.random() - 0.5);
@@ -32,10 +33,14 @@ class Game extends Component {
       console.log('Correct');
       this.setState((prev) => {
         const score = prev.score + 1;
-        return { ...this.state, score };
+        return { ...this.state, score, answer: true };
       });
     } else {
       console.log('Wrong');
+      this.setState((prev) => {
+        const score = prev.score + 1;
+        return { ...this.state, score, answer: false };
+      });
     }
     this.setState((prev) => {
       const current = questionBank[prev.responses + 1];   
@@ -47,10 +52,14 @@ class Game extends Component {
 
   render() {
     const { questionBank, responses } = this.state;
+    console.log('Responses: ', responses);
+
+    const currentQ = questionBank[responses-1];
+    console.log('CurrentQ: ', currentQ);
     const end = questionBank.length === responses;
 
-    const screen = end ? (<p>end</p>) : (<> 
-      <Modal show={this.state.show} handleClose={this.switchModal} />
+    const screen = end ? <End /> : (<> 
+      <Modal show={this.state.show} handleClose={this.switchModal} current={questionBank[responses]} answer={this.state.answer} />
       <Question text={this.state.current.name} />
       <Answers clickHandler={this.clickHandler} />
     </>);

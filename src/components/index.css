@@ -80,13 +80,38 @@
 }
 
 .modal-main {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #282c34;
   position:fixed;
   background: white;
+  border-radius: 3px;
   width: 80%;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.modal-text {
+  padding: 5px;
+}
+
+.modal-button {
+  position: fixed;
+  top: 100%;
+  margin-top: 5px;
 }
 
 .display-block {
