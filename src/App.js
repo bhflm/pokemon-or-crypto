@@ -1,4 +1,6 @@
 import './App.css';
+import Answers from './components/Answers';
+import Question from './components/Question';
 
 function App() {
   return (
@@ -8,17 +10,8 @@ function App() {
           <h1 className="title-text">Crypto or Pokemon?</h1>
         </div>
         <div className="home">
-          <div className="question">
-            <p className="question-text">Alakazam</p>
-          </div>
-        <div className="options">
-          <button className="button">
-            <p className="button-text">Crypto</p>
-          </button>
-          <button className="button">
-            <p className="button-text">Pokemon</p>
-          </button>
-        </div> 
+          <Question />
+          <Answers />
         </div>
         <div className="bottom-bar">
         <p className="bottom-bar-text">

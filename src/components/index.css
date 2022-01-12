@@ -1,0 +1,28 @@
+
+.question {
+    margin-bottom: 4rem;
+}
+  
+.question-text {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.answer {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    border-color: white;
+    background-color: #282c34;
+}
+
+.answer-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
