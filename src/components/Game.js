@@ -2,22 +2,59 @@ import './index.css';
 import React, {Component} from "react";
 import Answers from './Answers';
 import Question from './Question';
+import Modal from './Modal';
 import { data } from '../data';
 
-const shuffledData = data.sort(() => Math.random() - 0.5);
+const questionBank = data.sort(() => Math.random() - 0.5);
 
-console.log(shuffledData);
 class Game extends Component {
   constructor() {
     super();
     this.state = {
-      questionBank: [],
+      show: false,
+      questionBank,
+      current: questionBank[0],
       score: 0,
       responses: 0
     };
   }
 
+  switchModal = () => {
+    this.setState((prev) => {
+      const show = !prev.show;
+      return { show };
+    });
+  };
+
+  clickHandler = (answer) => {
+    const { current, questionBank } = this.state;
+    if (answer === current.type) {
+      console.log('Correct');
+      this.setState((prev) => {
+        const score = prev.score + 1;
+        return { ...this.state, score };
+      });
+    } else {
+      console.log('Wrong');
+    }
+    this.setState((prev) => {
+      const current = questionBank[prev.responses + 1];   
+      const responses = prev.responses + 1;
+      const show = true;
+      return { ...this.state, current, responses, show};
+    });
+  }
+
   render() {
+    const { questionBank, responses } = this.state;
+    const end = questionBank.length === responses;
+
+    const screen = end ? (<p>end</p>) : (<> 
+      <Modal show={this.state.show} handleClose={this.switchModal} />
+      <Question text={this.state.current.name} />
+      <Answers clickHandler={this.clickHandler} />
+    </>);
+
     return (
       <div className="App">
         <div className="App-main">
@@ -25,8 +62,7 @@ class Game extends Component {
             <h1 className="title-text">Crypto or Pokemon?</h1>
           </div>
           <div className="home">
-            <Question />
-            <Answers />
+          {screen}          
           </div>
           <div className="bottom-bar">
           <p className="bottom-bar-text">
