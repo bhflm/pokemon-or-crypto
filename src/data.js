@@ -63,7 +63,7 @@ export const data = [
         name: 'Lambo',
         type: 'Crypto',
         description: 'when lambo',
-        img: 'lambo.jpeg',
+        img: 'lambo.jpg',
     },
     {
         name: 'Latios',
@@ -84,16 +84,10 @@ export const data = [
         img: 'metamask.png',
     },
     {
-        name: 'Moon',
-        type: 'Crypto',
-        description: 'when moon',
-        img: 'moon.png',
-    },
-    {
         name: 'Pikachu',
         type: 'Pokemon',
         description: 'funny yellow dude',
-        img: 'pikachu.jpeg',
+        img: 'pikachu.png',
     },
     {
         name: 'Plug',

@@ -6,8 +6,8 @@ import Modal from './Modal';
 import End from './End';
 import { data } from '../data';
 
-const questionBank = data.sort(() => Math.random() - 0.5);
-
+const sortedData = data.sort(() => Math.random() - 0.5);
+const questionBank = sortedData.slice(0,9);
 class Game extends Component {
   constructor() {
     super();
