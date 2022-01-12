@@ -11,7 +11,7 @@
   
   .title {
     display: flex;
-    padding-top: 10%;
+    padding-top: 3px;
     margin-bottom: 1rem;
   }
   
@@ -99,9 +99,10 @@
 
 .modal-img {
   display: block;
+  height: 35%;
+  width: 35%;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 
 .modal-correct {
