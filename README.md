@@ -9,7 +9,7 @@ lol idk why would you care
 [Link][1].
 
 
-deployed w [fleek <3] 
+deployed w [fleek <3][2]
 
 
 [1]: https://pokemonorcrypto.com/
