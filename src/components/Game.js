@@ -7,7 +7,7 @@ import End from './End';
 import { data } from '../data';
 
 const sortedData = data.sort(() => Math.random() - 0.5);
-const questionBank = sortedData.slice(0,9);
+const questionBank = sortedData.slice(0,12);
 class Game extends Component {
   constructor() {
     super();
